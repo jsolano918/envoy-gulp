@@ -1,0 +1,209 @@
+$envoy-hero--inbetween: (
+  columns: 1,
+  media: "(max-width: 1400px)", 
+);
+
+$envoy-hero--tablet-up: (
+  columns: 1,
+  media: "(max-width: 1024px)", 
+);
+
+$envoy-hero--mobile: (
+  columns: 1,
+  media: "(max-width: 736px)", 
+);
+
+.envoy-hero {
+    position: relative;
+    width: 100%;
+    .django, .vizio,
+    .escape, .ultra {
+        height: 675px;
+        position: relative;
+        .hero-content-wrap {
+            width: 510px;
+            position: absolute;
+            .hero-title {
+                font-size: 62px;
+                font-family: $oswald;
+                text-transform: uppercase;
+                margin: 0;
+            }
+            .hero-text {
+                font-size: 16px;
+                font-weight: normal;
+            }
+        }
+    }
+    .django {
+        background: url('../images/hero1.jpg') top center no-repeat;
+        background-size: cover;
+        .hero-content-wrap {
+            top: 35%;
+            left: 20%;
+            .hero-title {
+                color: $heroRed;
+            }
+        }
+    }
+    .vizio {
+        background: url('../images/hero2.jpg') top center no-repeat;
+        background-size: cover;
+        .hero-content-wrap {
+            top: 20%;
+            right: 18%;
+            .hero-title {
+                color: $heroRed;
+            }
+        }
+    }
+    .escape {
+        background: url('../images/hero3.jpg') top center no-repeat;
+        background-size: cover;
+        .hero-content-wrap {
+            top: 25%;
+            left: 15%;
+            .hero-title, a {
+                color: $escOrange;
+            }
+        }
+    }
+    .ultra {
+        background: url('../images/hero4.jpg') top center no-repeat;
+        background-size: cover;
+        .hero-content-wrap {
+            top: 25%;
+            left: 20%;
+            .hero-title, a {
+                color: $ultraBlue;
+            }
+        }
+    }
+    .slick-prev, .slick-next {
+        position: absolute;
+        bottom: 10px;
+        right: 420px;
+        z-index: 3;
+        background: $dkGray;
+        border: none;
+        color: $white;
+        &:hover {
+            color: $dkOrange;
+            cursor: pointer;
+        }
+    }
+    .slick-next {
+        .fa-angle-right {
+            font-size: 40px;
+        }
+    }
+    .slick-prev {
+        right: 460px;
+        .fa-angle-left {
+            font-size: 40px;
+        }
+    }
+    .slick-dots {
+        position: relative;
+        list-style: none;
+        left: 50%;
+        float: left;
+        bottom: 50px;
+        margin-left: -44px;
+        padding: 0;
+        li {
+            display: inline;
+            margin-right: 10px;
+            &.slick-active {
+                button {
+                    background: $dkOrange;
+                }
+            }
+            button {
+                background: $white;
+                cursor: pointer;
+                text-indent: -9999px;
+                &:last-child {
+                    margin-right: 0;
+                }
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                border-style: none;
+            }
+        }
+    }
+
+    // tablet up for hero text positioning
+    @include grid-media($envoy-hero--inbetween) {
+        .django {
+            .hero-content-wrap {
+                left: 3%;
+            }
+        }
+        .vizio {
+            .hero-content-wrap {
+                right: 3%;
+            }
+        }
+        .escape {
+            .hero-content-wrap {
+                left: 3%;
+            }
+        }
+        .ultra {
+            .hero-content-wrap {
+                left: 3%;
+            }
+        }
+    }
+
+    // tablet up
+    @include grid-media($envoy-hero--tablet-up) {
+        .django, .vizio,
+        .escape, .ultra {
+            .hero-content-wrap {
+                .hero-title {
+                    font-size: 55px;
+                }
+                .hero-text {
+                    font-size: 14px;
+                }
+            }
+        }
+        .django {
+            .hero-content-wrap {
+                top: 18%;
+                left: 3%;
+            }
+        }
+        .vizio {
+            .hero-content-wrap {
+                top: 20%;
+                right: -10%;
+            }
+        }
+        .escape {
+            .hero-content-wrap {
+                top: 10%;
+                left: 3%;
+            }
+        }
+        .ultra {
+            .hero-content-wrap {
+                left: 3%;
+            }
+        }
+        .slick-prev {
+            right: 100px;
+        }
+        .slick-next {
+            right: 70px;
+        }
+    }
+
+    // mobile view
+    @include grid-media($envoy-hero--mobile) {
+        display: none;
+    }
+}

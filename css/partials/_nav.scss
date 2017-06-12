@@ -1,0 +1,239 @@
+$envoy-nav-grid: (
+  columns: 1,
+  gutter: 0
+);
+
+$envoy-nav-grid--tablet: (
+  media: "(max-width: 768px)", 
+);
+
+$envoy-nav-grid--mobile: (
+  media: "(max-width: 736px)", 
+);
+
+header {
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
+.main-nav {
+    @include grid-column(1, $envoy-nav-grid);
+    float: none;
+    height: 60px;
+    position: relative;
+    background-color: $navBg;
+
+    // nest
+    .logo {
+      height: 25px;
+      width: 87px;
+      float: left;
+      background: url('../images/logo.png') top center no-repeat;
+      text-indent: -9999px;
+      line-height: 0;
+      margin: 20px 30px 0 0;
+      padding: 0;
+    }
+
+    .mobile-btn { display: none }
+
+    ul {
+      float: left;
+      margin: 0;
+      padding: 30px 0 0;
+      li {
+        display: inline;
+        margin-right: 22px;
+        &:last-child {
+          margin: 0;
+        }
+        a {
+          font-size: 13px;
+          color: $white;
+          @include transition(all 0.3s ease);
+          &:hover {
+            color: $dkOrange;
+          }
+        }
+      }
+    }
+
+    // twitter styles
+    .twitter {
+      width: 200px;
+      height: 40px;
+      position: absolute;
+      bottom: -12px;
+      right: 0;
+      background: $mdGray;
+      overflow: hidden;
+      @include transition(all 0.5s ease);
+      &.extend {
+        width: 460px;
+        @include transition(all 0.5s ease);
+      }
+      .twit-body {
+        color: $turq;
+        width: 460px;
+        font-size: 13px;
+        .fa-twitter {
+          font-size: 21px;
+          margin: 10px 10px 0 20px;
+          float: left;
+        }
+        .tweet-text {
+          float: left;
+          margin-top: 15px;
+        }
+        .tweet-icon {
+          float: right;
+          display: block;
+          margin:  9px 60px 0 0;
+        }
+      }
+      .twit-toggle {
+        width: 40px;
+        height: 40px;
+        background: $dkOrange;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        text-align: center;
+        color: $white;
+        cursor: pointer;
+        @include transition(all 0.3s ease);
+        &.active {
+          background: $dkRed;
+          @include transition(all 0.3s ease);
+        }
+        .fa-plus,
+        .fa-minus {
+          size: 14px;
+          margin-top: 12px;
+        }
+      }
+    }
+
+    .twitter-posts {
+      display: none;
+      width: 460px;
+      height: 590px;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: absolute;
+      top: 60px;
+      background: $dkOrange;
+      @include transition(all 0.3s ease);
+      z-index: 2;
+      &.dropdown {
+        left: 500px;
+        display: block;
+      }
+      .post-wrap {
+        width: 430px;
+        height: 520px;
+        margin: 15px;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        &::-webkit-scrollbar-track {
+          background: $scrollBg;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar {
+          background: $scrollBg;
+          width: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: $dkRed;
+          border-radius: 10px;
+        }
+        .post {
+          margin-bottom: 15px;
+          p {
+            font-size: 36px;
+            font-weight: bold;
+            color: $white;
+            margin: 0 0 10px;
+            line-height: 1;
+            &:nth-child(2) {
+              font-size: 16px;
+              color: $twtGray;
+              margin: 0;
+            }
+          }
+        }
+      }
+      a {
+        color: $dkRed;
+        &.read-more {
+          font-weight: bold;
+          margin-left: 20px;
+        }
+        &:hover {
+          color: $turq;
+          @include transition(all 0.3s ease);
+        }
+      }
+    }
+    // end twitter styles
+
+    // .main-nav: tablet
+    @include grid-media($envoy-nav-grid--tablet) {
+      @include grid-column(1);
+      width: 100%;
+      margin-left: 0;
+      .logo {
+        margin: 20px 30px 0 20px;
+      }
+      .twitter {
+         display: none }
+    }
+}
+
+// header: mobile
+@include grid-media($envoy-nav-grid--mobile) {
+  header { 
+    position: relative;
+  }
+
+  .main-nav {
+    float: none;
+    .mobile-btn {
+        display: block;
+        float: right;
+        margin: 10px 20px;
+        border: none;
+        background: none;
+        .fa-bars {
+          font-size: 40px;
+          color: $dkOrange;
+        }
+      }
+      ul {
+        display: none;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background: $dkOrange;
+        opacity: 0.8;
+        @include transition(all 0.3s ease);
+        &.active {
+          display: block;
+        }
+        li {
+          display: block;
+          margin: 0;
+          a {
+            color: $white;
+            font-size: 30px;
+            padding: 10px 0;
+            display: block;
+            border-bottom: 1px solid $black;
+          }
+        }
+      }
+  }
+}

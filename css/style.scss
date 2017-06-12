@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,600');
+@import "bourbon/bourbon";
+@import "neat/neat"; 
+@import "partials/_reset.scss";
+@import "partials/_variables.scss";
+@import "partials/_nav.scss";
+@import "partials/_hero.scss";
+
+/* responsive grid */
+$envoy-layout-grid: (
+  columns: 1,
+  gutter: 0.5rem,
+);
+
+$envoy-layout-grid--tablet-up: (
+  columns: 9,
+  gutter: 0.5rem,
+  media: "(min-width: 768px)", 
+);
+
+$envoy-layout-grid--mobile: (
+  media: "(max-width: 736px)", 
+);
+
+body {
+  background: $dkGray;
+  color: $ltGray;
+  font-family: $font-main;
+  font-weight: $default-weight;
+}
+
+a {
+  color: $dkOrange;
+}
+
+.page-layout,
+.nav-layout { 
+  @include grid-container;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.page-layout {
+  margin-bottom: 200px; // just for footer spacing
+}
+
+
+// separated just for main grid
+.page-layout__one-col {
+  @include grid-column(1, $envoy-layout-grid);
+  margin: 0 auto;
+  float: none;
+  display: table;
+  .page-layout__three-col {
+    @include grid-column(1, $envoy-layout-grid);
+    img {
+        width: 100%;
+      }
+
+    @include grid-media($envoy-layout-grid--tablet-up) {
+      @include grid-column(3);
+      margin: 0;
+      &:nth-child(3) {
+        margin: 0 1rem;
+      }
+    }
+  }
+}
+
+// main body
+.page-layout__one-col {
+  // main message
+  h3 {
+    font-size: 36px;
+    color: $white;
+    margin: 55px 0 70px 0;
+    padding-bottom: 30px;
+    border-bottom: 5px solid $border;
+    span {
+      color: $dkOrange;
+    }
+  }
+  .title {
+      font-size: 22px;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid $border;
+      a {
+        font-size: 13px;
+      }
+    }
+  // featured work
+  &.featured {
+    margin-bottom: 75px;
+    .feat-title {
+      color: $white;
+      font-size: 18px;
+      span {
+        color: $turq;
+      }
+    }
+    .feat-desc {
+      font-size: 13px;
+    }
+  }
+  // wire news
+  &.wire {
+    .wire-news {
+      display: block;
+        .wire-title {
+        font-size: 33px;
+        line-height: 1;
+        color: $white;
+        margin: 0;
+        &:hover {
+          color: $turq;
+          @include transition(all 0.3s ease);
+        }
+      }
+      .wire-date {
+        font-size: 13px;
+        color: $ltGray;
+      }
+    }
+  }
+
+  //mobile view
+    @include grid-media($envoy-layout-grid--mobile) {
+      h3 {
+        margin: 30px 0 30px 0;
+      }
+      &.featured {
+        margin-bottom: 30px;
+      }
+      .page-layout__three-col {
+        margin-bottom: 15px;
+      }
+    }
+}
